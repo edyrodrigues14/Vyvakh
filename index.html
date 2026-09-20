@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vyvakh Technology — Pesquisa, Desenvolvimento e Licenciamento de Tecnologia</title>
+  <meta name="description" content="A Vyvakh Technology desenvolve tecnologias inovadoras em parceria com ICTs como EMBRAPII e SENAI, validando e licenciando soluções de alto impacto em materiais avançados, química verde, energia e inteligência artificial." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vyvakh Technology" />
+  <meta property="og:description" content="Pesquisa, desenvolvimento e licenciamento de tecnologia em parceria com a rede EMBRAPII e Institutos SENAI de Inovação." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --bg: #0b0f1a;
+      --bg-elevated: #10162a;
+      --bg-card: #131a30;
+      --border: #232c47;
+      --text-primary: #eef1fb;
+      --text-secondary: #9aa3c0;
+      --text-muted: #6a7395;
+      --accent: #4db8f0;
+      --accent-dim: rgba(77, 184, 240, 0.12);
+      --accent-line: rgba(77, 184, 240, 0.28);
+      --silver: #c3c9d8;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --container: 1120px;
+      --radius: 14px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    section { padding: 96px 0; position: relative; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #06131f;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(77, 184, 240, 0.45); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent-line); background: var(--accent-dim); }
+
+    /* ============ HEADER ============ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11, 15, 26, 0.7);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-mark { width: 26px; height: 32px; object-fit: contain; }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text-primary); }
+
+    .nav-cta { display: flex; align-items: center; gap: 20px; }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .menu-toggle span {
+      width: 22px; height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      padding: 180px 0 120px;
+      position: relative;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      top: -10%; right: -8%;
+      width: 640px; height: 640px;
+      opacity: 0.5;
+    }
+
+    .hero-grid-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 620px;
+    }
+
+    .hero-brand {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-brand img {
+      width: 100%;
+      max-width: 380px;
+      filter: drop-shadow(0 20px 60px rgba(77, 184, 240, 0.15));
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5.6vw, 64px);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p.lead {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 620px;
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+    }
+
+    .hero-stat .num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .hero-stat .label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ============ SOBRE ============ */
+    .sobre { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .sobre h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 24px; }
+
+    .sobre-text p { color: var(--text-secondary); margin-bottom: 18px; font-size: 15.5px; }
+
+    .sobre-points { display: flex; flex-direction: column; gap: 20px; }
+
+    .point {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .point-icon {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .point-icon svg { width: 18px; height: 18px; }
+
+    .point h4 { font-size: 15px; margin-bottom: 4px; }
+    .point p { font-size: 13.5px; color: var(--text-muted); }
+
+    /* ============ ÁREAS DE ATUAÇÃO ============ */
+    .areas-head { max-width: 620px; margin-bottom: 56px; }
+    .areas-head h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 16px; }
+    .areas-head p { color: var(--text-secondary); font-size: 16px; }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .area-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .area-card:hover { border-color: var(--accent-line); transform: translateY(-4px); }
+
+    .area-num {
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .area-icon {
+      width: 44px; height: 44px;
+      margin-bottom: 22px;
+    }
+
+    .area-card h3 { font-size: 19px; margin-bottom: 10px; }
+    .area-card p { color: var(--text-secondary); font-size: 14.5px; }
+
+    /* ============ PARCEIROS ============ */
+    .parceiros { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .parceiros-head { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .parceiros-head h2 { font-size: clamp(26px, 3vw, 34px); margin-bottom: 16px; }
+    .parceiros-head p { color: var(--text-secondary); font-size: 15.5px; }
+
+    .parceiros-logos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .parceiro-slot {
+      aspect-ratio: 3/2;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .modelo-parceria {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .modelo-item { padding: 8px; }
+    .modelo-item .num { font-family: var(--font-display); font-size: 30px; color: var(--accent); margin-bottom: 8px; }
+    .modelo-item .txt { font-size: 13.5px; color: var(--text-secondary); }
+
+    /* ============ CONTATO ============ */
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .contato h2 { font-size: clamp(28px, 3.4vw, 38px); margin-bottom: 16px; }
+    .contato > .container > p { color: var(--text-secondary); max-width: 460px; margin-bottom: 0; }
+
+    .contato-info { display: flex; flex-direction: column; gap: 22px; margin-top: 36px; }
+
+    .info-row { display: flex; align-items: center; gap: 14px; }
+    .info-row .ic {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-row .ic svg { width: 19px; height: 19px; }
+    .info-row .meta .label { font-size: 12px; color: var(--text-muted); }
+    .info-row .meta .value { font-size: 15px; font-weight: 500; }
+    .info-row .meta .value a:hover { color: var(--accent); }
+
+    form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+
+    .field { margin-bottom: 20px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      transition: border-color 0.2s;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--accent-line);
+    }
+    .field textarea { resize: vertical; min-height: 110px; }
+
+    form .btn-primary { width: 100%; justify-content: center; }
+
+    /* ============ FOOTER ============ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+    .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-wrap p { font-size: 13px; color: var(--text-muted); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 860px) {
+      nav, .nav-cta .btn-ghost { display: none; }
+      .menu-toggle { display: flex; }
+      section { padding: 72px 0; }
+      .hero { padding: 140px 0 80px; }
+      .hero-grid-layout { grid-template-columns: 1fr; }
+      .hero-brand { order: -1; margin-bottom: 8px; }
+      .hero-brand img { max-width: 260px; }
+      .sobre-grid, .contato-grid { grid-template-columns: 1fr; gap: 40px; }
+      .areas-grid { grid-template-columns: 1fr; }
+      .parceiros-logos { grid-template-columns: repeat(2, 1fr); }
+      .modelo-parceria { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { grid-template-columns: 1fr; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="#top" class="logo">
+        <img class="logo-mark" src="assets/logo-emblem.png" alt="Vyvakh Technology" />
+        Vyvakh
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#areas">Áreas de atuação</a></li>
+          <li><a href="#parceiros">Parceiros</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a href="#contato" class="btn btn-ghost">Fale conosco</a>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-bg">
+      <svg class="hero-grid" viewBox="0 0 640 640" fill="none">
+        <circle cx="500" cy="140" r="180" stroke="#232c47" stroke-width="1"/>
+        <circle cx="500" cy="140" r="120" stroke="#232c47" stroke-width="1"/>
+        <polygon points="500,60 570,100 570,180 500,220 430,180 430,100" stroke="#4db8f0" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="container hero-grid-layout">
+      <div class="hero-inner">
+        <span class="eyebrow">P&amp;D · Licenciamento de tecnologia</span>
+        <h1>Ciência aplicada, transformada em <span>tecnologia licenciável</span>.</h1>
+        <p class="lead">
+          A Vyvakh Technology desenvolve tecnologias inovadoras em parceria com
+          Institutos de Ciência e Tecnologia — como a rede EMBRAPII e os Institutos
+          SENAI de Inovação — validando soluções cientificamente e licenciando-as
+          para quem já tem escala industrial para levá-las ao mundo.
+        </p>
+        <div class="hero-actions">
+          <a href="#areas" class="btn btn-primary">Conhecer as áreas de atuação</a>
+          <a href="#contato" class="btn btn-ghost">Falar com um pesquisador</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num">P&amp;D</div>
+            <div class="label">Núcleo da operação</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">ICTs</div>
+            <div class="label">Parcerias técnicas</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">4</div>
+            <div class="label">Frentes de inovação</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-brand">
+        <img src="assets/logo.png" alt="Vyvakh Technology — Pesquisa, Desenvolvimento e Inovação, Produtos e Licenciamento" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE ============ -->
+  <section class="sobre" id="sobre">
+    <div class="container sobre-grid">
+      <div>
+        <span class="eyebrow">Sobre a Vyvakh</span>
+        <h2>Não fabricamos em escala.<br>Validamos e licenciamos.</h2>
+        <div class="sobre-text">
+          <p>
+            Empresas industriais e instituições públicas sabem que precisam inovar,
+            mas raramente têm estrutura interna de P&amp;D, capital para assumir todo
+            o risco técnico de uma pesquisa do zero, ou tempo para levar uma
+            tecnologia da bancada até o mercado.
+          </p>
+          <p>
+            A Vyvakh atua como ponte entre ciência aplicada e mercado: operamos em
+            rede com Institutos de Ciência e Tecnologia de referência, reduzindo
+            capital intensivo em P&amp;D, acelerando a validação técnica de cada
+            tecnologia e acessando fomento não reembolsável. O resultado é um
+            portfólio de tecnologias validadas, prontas para licenciamento —
+            e não uma linha de produção própria amarrada a um único produto.
+          </p>
+        </div>
+      </div>
+      <div class="sobre-points">
+        <div class="point">
+          <div class="point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><path d="M9 3h6v4l4 9a2 2 0 0 1-2 3H7a2 2 0 0 1-2-3l4-9V3z"/><path d="M8 12h8"/></svg>
+          </div>
+          <div>
+            <h4>Pesquisa aplicada</h4>
+            <p>Cada tecnologia parte de uma necessidade real de mercado, não de ciência pela ciência.</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5z"/><path d="M3 7l9 5 9-5"/><path d="M12 22V12"/></svg>
+          </div>
+          <div>
+            <h4>Rede de parceiros</h4>
+            <p>Infraestrutura, laboratórios e corpo técnico compartilhados com ICTs de referência nacional.</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 8h6M9 12h4"/></svg>
+          </div>
+          <div>
+            <h4>Licenciamento</h4>
+            <p>Tecnologia validada, entregue para quem já tem escala industrial para produzir e distribuir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÁREAS DE ATUAÇÃO ============ -->
+  <section id="areas">
+    <div class="container">
+      <div class="areas-head">
+        <span class="eyebrow">Áreas de atuação</span>
+        <h2>Um portfólio, não um único produto.</h2>
+        <p>Atuamos em múltiplas frentes tecnológicas em paralelo, sem depender do sucesso de uma única tecnologia ou setor.</p>
+      </div>
+      <div class="areas-grid">
+
+        <div class="area-card">
+          <span class="area-num">01</span>
+          <svg class="area-icon" viewBox="0 0 44 44" fill="none">
+            <circle cx="22" cy="22" r="6" stroke="#4db8f0" stroke-width="1.6"/>
+            <circle cx="10" cy="14" r="3" stroke="#4db8f0" stroke-width="1.6"/>
+            <circle cx="34" cy="14" r="3" stroke="#4db8f0" stroke-width="1.6"/>
+            <circle cx="10" cy="32" r="3" stroke="#4db8f0" stroke-width="1.6"/>
+            <circle cx="34" cy="32" r="3" stroke="#4db8f0" stroke-width="1.6"/>
+            <path d="M12.6 15.6 17 19M32 15.6 27.4 19M12.6 30 17 25.4M32 30 27.4 25.4" stroke="#4db8f0" stroke-width="1.2"/>
+          </svg>
+          <h3>Materiais avançados</h3>
+          <p>Síntese, caracterização e aplicação de novos materiais — de estruturas nanométricas a compósitos de alta performance.</p>
+        </div>
+
+        <div class="area-card">
+          <span class="area-num">02</span>
+          <svg class="area-icon" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6c6 8 12 14 12 21a12 12 0 1 1-24 0c0-7 6-13 12-21z" stroke="#4db8f0" stroke-width="1.6"/>
+            <path d="M22 18v16" stroke="#4db8f0" stroke-width="1.2"/>
+          </svg>
+          <h3>Química verde</h3>
+          <p>Rotas de síntese e processos produtivos de menor impacto ambiental, do laboratório à escala industrial.</p>
+        </div>
+
+        <div class="area-card">
+          <span class="area-num">03</span>
+          <svg class="area-icon" viewBox="0 0 44 44" fill="none">
+            <path d="M24 4 10 24h10l-4 16 18-22H24l4-14z" stroke="#4db8f0" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <h3>Energia</h3>
+          <p>Tecnologias que aumentam eficiência energética e ampliam o uso de fontes renováveis e de resíduos como insumo.</p>
+        </div>
+
+        <div class="area-card">
+          <span class="area-num">04</span>
+          <svg class="area-icon" viewBox="0 0 44 44" fill="none">
+            <rect x="10" y="10" width="24" height="24" rx="4" stroke="#4db8f0" stroke-width="1.6"/>
+            <circle cx="17" cy="18" r="2" fill="#4db8f0"/>
+            <circle cx="27" cy="18" r="2" fill="#4db8f0"/>
+            <path d="M15 27c2-3 12-3 14 0" stroke="#4db8f0" stroke-width="1.4"/>
+          </svg>
+          <h3>Inteligência artificial aplicada</h3>
+          <p>Soluções de IA voltadas a problemas de alto impacto social, desenvolvidas em parceria com centros de referência.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARCEIROS ============ -->
+  <section class="parceiros" id="parceiros">
+    <div class="container">
+      <div class="parceiros-head">
+        <span class="eyebrow">Rede de parceiros</span>
+        <h2>Ciência com endereço certo.</h2>
+        <p>Desenvolvemos nossas tecnologias em parceria direta com Institutos de Ciência e Tecnologia de referência nacional.</p>
+      </div>
+      <div class="parceiros-logos">
+        <div class="parceiro-slot">EMBRAPII</div>
+        <div class="parceiro-slot">Institutos SENAI de Inovação</div>
+        <div class="parceiro-slot">SEBRAE</div>
+        <div class="parceiro-slot">Logo do parceiro</div>
+      </div>
+      <div class="modelo-parceria">
+        <div class="modelo-item">
+          <div class="num">01</div>
+          <div class="txt">Identificação de tecnologia com potencial de mercado</div>
+        </div>
+        <div class="modelo-item">
+          <div class="num">02</div>
+          <div class="txt">Validação científica em rede com o ICT parceiro</div>
+        </div>
+        <div class="modelo-item">
+          <div class="num">03</div>
+          <div class="txt">Licenciamento para escala industrial</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTATO ============ -->
+  <section class="contato" id="contato">
+    <div class="container contato-grid">
+      <div>
+        <span class="eyebrow">Contato</span>
+        <h2>Vamos conversar sobre uma parceria.</h2>
+        <p>Seja para propor uma tecnologia, discutir uma parceria institucional ou entender nosso modelo de licenciamento, fale diretamente com o time de pesquisa.</p>
+
+        <div class="contato-info">
+          <div class="info-row">
+            <div class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </div>
+            <div class="meta">
+              <div class="label">Pesquisador responsável</div>
+              <div class="value">Edinaldo Rodrigues</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L13 14l5 2v4a2 2 0 0 1-2 2C8.6 22 2 15.4 2 7a2 2 0 0 1 2-2z"/></svg>
+            </div>
+            <div class="meta">
+              <div class="label">Telefone / WhatsApp</div>
+              <div class="value"><a href="tel:+5571991037771">(71) 99103-7771</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4db8f0" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </div>
+            <div class="meta">
+              <div class="label">E-mail</div>
+              <div class="value"><a href="mailto:edinaldosrodrigues@yahoo.com.br">edinaldosrodrigues@yahoo.com.br</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="contact-form">
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" required />
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="assunto">Assunto</label>
+          <input type="text" id="assunto" name="assunto" placeholder="Ex: proposta de parceria institucional" />
+        </div>
+        <div class="field">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container footer-wrap">
+      <p>© <span id="year"></span> Vyvakh Technology. Todos os direitos reservados.</p>
+      <p>Pesquisa, desenvolvimento e licenciamento de tecnologia.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Ano dinâmico no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Menu mobile: alterna a navegação ao clicar no botão hamburguer
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Formulário de contato: substitua este handler por uma integração real
+    // (ex: envio para um endpoint próprio, Formspree, ou serviço de e-mail transacional)
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      window.location.href =
+        'mailto:edinaldosrodrigues@yahoo.com.br?subject=Contato via site Vyvakh&body=Nome: ' +
+        encodeURIComponent(nome);
+    });
+  </script>
+</body>
+</html>
